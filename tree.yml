@@ -71,16 +71,16 @@ start: #TL-1 early tech. Sounding rockets, basic structural pieces and wings. La
 
     longAntenna:
         cost: 5
-        entryCost: 0
+        # entryCost: 0
 
     SXTAntenna:
         cost: 1
-        entryCost: 0
+        # entryCost: 0
 
     # Basic RemoteTech antenna, so things can get off the ground. :)
     RTShortAntenna1:
         cost: 2
-        entryCost: 0
+        # entryCost: 0
 
     # Fairings
 
@@ -144,6 +144,20 @@ start: #TL-1 early tech. Sounding rockets, basic structural pieces and wings. La
         cost: 0.1
     proceduralStackDecoupler:
         cost: 0.1
+        
+    #SSTU Procedural stuff
+    SSTU-SC-TANK-MFT-A: #not excalty the same curve as PP, but roughly accurate for medium sized tanks (around 20*5m)
+        cost: 100
+    SSTU-SC-TANK-MFT-B:
+        cost: 100
+    SSTU-SC-GEN-PDC: #still 5 times more expensive than PP decoupler
+        cost: 0
+    SSTU-SC-GEN-RBDC:
+        cost: 0
+    SSTU-SC-GEN-FR-N:
+       cost: 0
+    SSTU-SC-GEN-FR-W:
+       cost: 0
 
     # Nose Cones
 
@@ -183,6 +197,9 @@ start: #TL-1 early tech. Sounding rockets, basic structural pieces and wings. La
         cost: 35
     elevon3:
         cost: 40
+    elevon5:
+        cost: 50
+
     pCtrlSrf1:
         cost: 0.1
     ProceduralAllMovingWing:
@@ -254,6 +271,11 @@ start: #TL-1 early tech. Sounding rockets, basic structural pieces and wings. La
                   # bodies + different amounts of clipping into base
     SXTelevonVeryLarge:
         cost: 185 # same as SXTelevonLarge
+    
+    CanardController: # comparable to basic tail fin
+        cost: 20
+    AdvancedCanard: # similar to the normal canard  
+        cost: 20
 
     # Intakes. Also cheap.
 
@@ -377,11 +399,11 @@ start: #TL-1 early tech. Sounding rockets, basic structural pieces and wings. La
     # Core for sounding rockets. Should not provide yaw/pitch/roll control
     # and will not, once RT has that implemented.
     RP0probeSounding0-3m:
-        entryCost: 0
+        # entryCost: 0
         cost: 1
     # Core for V-2 stuff - early, heavy, but 20t avionics.
     GuidanceStart1m: &A4Guidance
-        entryCost: 0
+        # entryCost: 0
         cost: 300
         
     # RCS
@@ -410,7 +432,7 @@ start: #TL-1 early tech. Sounding rockets, basic structural pieces and wings. La
     # Small solid
     # This is from VSR; not all players will have it.
     SnubOtron:
-        entryCost: 0
+        # entryCost: 0
         cost: 3
     B9_Engine_T2_SRBS:
         cost: 3
@@ -418,18 +440,18 @@ start: #TL-1 early tech. Sounding rockets, basic structural pieces and wings. La
     # modeled on the electronics of WAC Corporal / Aerobee
     # Early Aerojet engine, used on WAC Corporal and Aerobee. Very small and low efficency.
     ROAerobeeSustainer:
-        entryCost: 0
+        # entryCost: 0
         cost: 10
 
     # WAC / Aerobee booster, thanks Agathorn!
     TinyTim:
-        entryCost: 0
+        # entryCost: 0
         cost: 36
 
 
     # Tanks. Also cheap. They're tanks.
     SXTFuel625m:
-        cost: 30
+        cost: 30    # 250 volume works out to 0.12 per cubic meter of volume
     miniFuelTank:
         cost: 30
     rcsTankMini:
@@ -441,8 +463,11 @@ start: #TL-1 early tech. Sounding rockets, basic structural pieces and wings. La
         
     # AIES tanks
     tankminsond:
+        cost: 12    # based on 0.12 funds per cubic meter of volume
     satpropt300FuelTank:
+        cost: 12    # based on 0.12 funds per cubic meter of volume
     tanktoemv2:
+        cost: 108   # based on 0.12 funds per cubic meter of volume
 
     # This is from EngineIgnitor. I *guess* it makes sense to put it
     # in the starting node...
@@ -452,15 +477,15 @@ start: #TL-1 early tech. Sounding rockets, basic structural pieces and wings. La
     # FASA flags. These are all free. Because they make the game more
     # awesome.
     FASAFlagPod:
-        entryCost: 0
+        # entryCost: 0
         cost: 0
 
     FASAFlagPod2x:
-        entryCost: 0
+        # entryCost: 0
         cost: 0
 
     FASAFlagPod4x:
-        entryCost: 0
+        # entryCost: 0
         cost: 0
 
     # Launch Clamps/Towers
@@ -478,12 +503,18 @@ start: #TL-1 early tech. Sounding rockets, basic structural pieces and wings. La
         cost: 10
     SXTlaunchclamp1:
         cost: 10
+    # RSB Towers
+    RSBclamp01:
+        cost: 10
+    RSBclamp02:
+        cost: 10
+    RSBtowerDelta:
+        cost: 10
+    RSBtowerDelta2:
+        cost: 10
+
 
     # Unsorted. Please sort and price me! ;)
-
-    CanardController:
-    AdvancedCanard:
-    elevon5:
     nacelleBody:
     radialEngineBody:
     
@@ -525,18 +556,55 @@ start: #TL-1 early tech. Sounding rockets, basic structural pieces and wings. La
     # AIES Fairings
     sep1a1ur5:
     basepunta1ur5:
+        cost: 0.07
     top100a1ur5:
+        cost: 0.975
     top100a1ur5b:
+        cost: 1.125
     top500a1ur5:
-    
+        cost: 1.5
+    topb1:
+        cost: 0.3
+
+    # KW Fairing Bases
+    KW1mExpandedFairingBase:
+        cost: 2.3
+    KW2mExpandedFairingBase:
+        cost: 7.5
+    KW1mFairingBase:
+        cost: 1.8
+    KW2mFairingBase:
+        cost: 6
+    # KW Fairings
+    KW12mExpandedFairingCone:
+        cost: 0.9
+    KW2mExpandedFairingCone:
+        cost: 2.7
+    KW1mFairingCone:
+        cost: 0.75
+    KW2mFairingCone:
+        cost: 2.1
+    KW1mDecouplerShroud:
+        cost: 1.23
+    KW1mExpandedFairingWall:
+        cost: 0.525
+    KW1mFairingWall:
+        cost: 0.45
+    KW2mDecouplerShroud:
+        cost: 8.955
+    KW2mExpandedFairingWall:
+        cost: 1.5
+    KW2mFairingWall:
+        cost: 1.2
+
     # KIS
     KIS_guide: &KIS
-        entryCost: 0
+        # entryCost: 0
         cost: 1
     KIS_electricScrewdriver: *KIS
     KIS_wrench: *KIS
     KIS_bomb1:
-        entryCost: 0
+        # entryCost: 0
         cost: 10
 
     # DHC-3 Otter cockpit, first flight 1951
@@ -555,6 +623,8 @@ start: #TL-1 early tech. Sounding rockets, basic structural pieces and wings. La
         cost: 30
     SXTBuzzard: # Junkers Ju-87 cockpit? https://upload.wikimedia.org/wikipedia/commons/9/94/Junkers_Ju_87B-2_Stuka.svg
         cost: 30 # same as for He-111
+    Interceptor?Cockpit:
+        cost: 60
     # Prop engines
     SXTR280018WProp: &R2800-18W #for F4U-4
         cost: 23.7 # late war, for P-61, via Nash, see https://books.google.com/books?id=PerGbKxOPZYC&pg=PA73&lpg=PA73&dq=nash+kelvinator+aircraft+engine&source=bl&ots=0bowaYis6U&sig=MHQTtVTNkKWrlrYN66-GG18hytM&hl=en&ei=9jQ0TeSxJYOglAf6uJCHCg&sa=X&oi=book_result&ct=result&sqi=2#v=onepage&q=nash%20kelvinator%20aircraft%20engine&f=false
@@ -611,7 +681,7 @@ start: #TL-1 early tech. Sounding rockets, basic structural pieces and wings. La
     aje_nene:
         cost: 50
     RO-DerwentV:
-        entryCost: 0
+        # entryCost: 0
         cost: 36
         
     #Taerobee A-4/V-2/Bumper parts
@@ -619,17 +689,17 @@ start: #TL-1 early tech. Sounding rockets, basic structural pieces and wings. La
     # But that's very, very unbalanced, and probably wrong to represent postwar costs anyway
     Bumper_Control: *A4Guidance
     Bumper_Nose:
-        entryCost: 0
+        # entryCost: 0
         cost: 30
     Bumper_Body:
-        entryCost: 0
+        # entryCost: 0
         cost: 30
     Bumper_Engine: &A4Engine
-        entryCost: 0
+        # entryCost: 0
         cost: 150
     Bumper_Engine_Unclad: *A4Engine
     Bumper_Fin:
-        entryCost: 0
+        # entryCost: 0
         cost: 5
 
     Libra_Ladder_A:
@@ -639,7 +709,7 @@ start: #TL-1 early tech. Sounding rockets, basic structural pieces and wings. La
         
     #NEBULA decals:
     Decal?curved: &decals
-        entryCost: 0
+        # entryCost: 0
         cost: 1
     Flat?decal: *decals
     Long?decal?1x2: *decals
@@ -704,6 +774,28 @@ start: #TL-1 early tech. Sounding rockets, basic structural pieces and wings. La
         cost: 10
     B9_Utility_InfoDrive: # action group editor
         cost: 1
+
+    # Hullcams..they don't affect gameplay
+    aerocam:
+        cost: 0
+    hc_booster:
+        cost: 0
+    hc_kazzelblad:
+        cost: 0
+    hc_launchcam:
+        cost: 0
+    hc_navcam:
+        cost: 0
+    hc_nightvision:
+        cost: 0
+    hc_wideangle:
+        cost: 0
+    hc_scicam:
+        cost: 0
+    hullcam_hubbazoot:
+        cost: 0
+    MSIKerbPro:
+        cost: 0
         
 
 subsonicFlight: # Now Supersonic Flight
@@ -746,7 +838,7 @@ basicRocketry: #TL0: Vanguard, early-mid 50s tech. Includes Black Arrow engines 
     SXTX405: # X-405 (Vanguard main engine)
         cost: 650 # very expensive for its performance.
 
-    SXTAJ10: # (Vanguard/Able/[Early]Delta upper stage)
+    SXTAJ10: &AJ10early # (Vanguard/Able/[Early]Delta upper stage)
         cost: 150
     # Altair moved to Basic Solids
     
@@ -779,18 +871,28 @@ basicRocketry: #TL0: Vanguard, early-mid 50s tech. Includes Black Arrow engines 
 
     LVT15: #RD-103
         cost: 850
+    
+    #SSTU
+    SSTU-AJ10-CustomEarly: *AJ10early
 
 engineering101:
     # Tanks
 
-    fuelTankSmallFlat:
-    fuelTank:
+    # within a deviation of 24L(4percent) this tank matches the performance of the fasa one
+    fuelTankSmallFlat: # 500L tank, comp. to fasa_mercury_lft_short (528L)
+        cost: 1
+    fuelTank: # 2kL tank
+        cost: 1
     toroidalFuelTank:
-    fuelTankSmall:
+        cost: 1
+    fuelTankSmall: # 1kL tank
+        cost: 1
     radialRCSTank:
-    RCSFuelTank:
+    RCSFuelTank: #larger version of rcsTankMini
+        cost: 1
     rcsTankRadialLong:
-    fuelTank_long:
+    fuelTank_long: # 4kL tank
+        cost: 1
     
     # AIES tanks
     tankorb1:
@@ -798,6 +900,29 @@ engineering101:
     tankMER6:
     tank1300cl:
     
+    #SSTU tanks
+    SSTU-SC-TANK-MFT-D:
+        entryCost: 1000
+        cost: 100
+    SSTU-SC-TANK-MFT-R: #small radial tank
+        entryCost: 300
+        cost: 50 
+    SSTU-SC-TANK-MFT-L: #Lander tanks
+        entryCost: 500
+        cost: 75
+    SSTU-SC-TANK-MUS-CB: #less structures
+        entryCost: 800
+        cost: 90 
+    SSTU-SC-TANK-MUS-ST: #less structures
+        entryCost: 800
+        cost: 90 
+    SSTU-SC-GEN-IPA-N:
+        cost: 0
+    SSTU-SC-GEN-IPA-W:
+        cost: 0
+    SSTU-SC-GEN-ISDC:
+        cost: 0
+        
     #AIES decouplers - they have similar sizes, about 1,25 - 2,5m
     decoupvector:
     decouplersv05:
@@ -837,12 +962,8 @@ engineering101:
 
     # Wedges are relatively expensive, because they've got to be
     # wired for interchangeable components.
-    US_c_Hub_QuadCore:
+    US_1C10_Wedge_Quadcore:
         cost: 200
-
-    # The decoupler is pretty cheap, because other decouplers are, too.
-    US_f_Dec_SafetyDecoupler125:
-        cost: 10
 
     # This is a barometer, thermo and x-ray doohicky in a single wedge. It
     # also looks cool. :)
@@ -852,24 +973,45 @@ engineering101:
     # US unlocks with fuel wedges; they're just cool looking tanks.
     # We're giving this an alias so we can have lots of wedges with the
     # same price.
-    US_Wedge_Fuel: &basicWedge
+    US_1R210_Wedge_Liquidfuel: &basicWedge
         cost: 20
     
-    US_Wedge_Monoprop: *basicWedge
-    US_l_Wedge_Hydrogen: *basicWedge
-    US_m_Wedge_Oxygen: *basicWedge
-    US_q_Wedge_Water: *basicWedge
+    US_1R220_Wedge_Monoprop: *basicWedge
+    US_1R330_Wedge_Hydrogen: *basicWedge
+    US_1R340_Wedge_Oxygen: *basicWedge
+    US_1R360_Wedge_Water: *basicWedge
 
-    # This isn't a wedge, it's just yet another radial tank, and
+    # These are not wedges, they are just radial tanks and
     # should be priced with whatever prices we use for those.
-    US_Radial_Oxygen: *basicWedge
+    US_2R340_Radial_Oxygen: *basicWedge
+    US_Radial_R30_Water: *basicWedge
 
     # AIES Fairings
     basepuntv2r10:
+        cost: 1.8
     t1000v4:
+        cost: 1.8765
     t1500v4:
+        cost: 2.552
     t2000v4:
+        cost: 3.303
     t3000r20c:
+
+    # KW Fairings
+    KW3mExpandedFairingBase:
+        cost: 15
+    KW3mFairingBase:
+        cost: 12.2
+    KW3mExpandedFairingCone:
+        cost: 3.18
+    KW3mFairingCone:
+        cost: 2.55
+    KW3mDecouplerShroud:
+        cost: 27.78
+    KW3mExpandedFairingWall:
+        cost: 1.8
+    KW3mFairingWall:
+        cost: 1.5
     
     ServiceBay_125:
         cost: 200 # modeled on Univ Storage stuff above.
@@ -929,6 +1071,23 @@ earlyAvionics:
         entryCost: 7000
         cost: 250
 
+    # Smart Parts (These are more Quality of Life things really, so keep them cheap)
+    kb-fuel-breaker1: &smartpart
+        entryCost: 100
+        cost: 10
+    kb-fuel-breaker-15: *smartpart
+    kb-fuel-breaker-2: *smartpart
+    kb-fuel-breaker-3: *smartpart
+    FuelController: *smartpart
+    km_smart_alt_low: *smartpart
+    km_smart_fuel: *smartpart
+    km_prox_sensor: *smartpart
+    km_smart_radio: *smartpart
+    km_smart_time: *smartpart
+    km_valve: *smartpart
+    km_valve2: *smartpart
+
+
 aviation: # Mature Supersonic Flight: 50s afterburning jets, ramp intakes, etc.
     aje_j57: #J57-P21
         cost: 130
@@ -953,6 +1112,9 @@ aviation: # Mature Supersonic Flight: 50s afterburning jets, ramp intakes, etc.
         cost: 32
     B9_Engine_VA1_Intake:
         cost: 20
+        
+    Trainer?Cockpit: # F-104 like
+        cost: 200
 
 # TIER 2
 generalRocketry: # TL1 Late 1950s/1960 tech, first real orbital LVs. Atlas, R-7, etc.
@@ -1012,7 +1174,7 @@ generalRocketry: # TL1 Late 1950s/1960 tech, first real orbital LVs. Atlas, R-7,
     NLV_ARRO_A: *Gamma8
     NLV_Engine_B: *Gamma2
     #Ablestar's engine, has restarts
-    SXTAJ10Mid:
+    SXTAJ10Mid: &AJ10mid
         cost: 250
 
 # FASA Agena (CORONA)
@@ -1020,6 +1182,7 @@ generalRocketry: # TL1 Late 1950s/1960 tech, first real orbital LVs. Atlas, R-7,
     FASAAgena_Engine: &AgenaEngine # Bell 8xxx engine for Agena
         cost: 350
     RO-AgenaEngine: *AgenaEngine
+    SSTU-SC-ENG-LR81: *AgenaEngine
 
     # Titan engines
     # AIES
@@ -1064,13 +1227,12 @@ generalRocketry: # TL1 Late 1950s/1960 tech, first real orbital LVs. Atlas, R-7,
     TLV_Engine_A: *RD107
     Alto_Engine_A: *VostokUpper
     Alto_Engine_B: *R7Vernier
-    
-    FREVIKINGEARLY: #Viking 2/2B
-        cost: 550 #Ariane 1-1 first stage: $14.5M
-        entryCost: 30000
-    FREVIKINGUPPER: #Viking 4/4B
-        cost: 1000
-        entryCost: 45000
+        
+    # RD-107 & RD-108 From SSTU
+    SSTU-SC-ENG-RD-108A: *RD108
+    SSTU-SC-ENG-RD-107A: *RD107
+    SSTU-SC-ENG-RD-107X: *RD107
+    SSTU-AJ10-CustomMid: *AJ10mid
 
 basicConstruction:
     batteryPack:
@@ -1088,11 +1250,16 @@ basicConstruction:
         entryCost: 500
 
     # Tanks
-    RCSTank1-2:
-    fuelTank4-2:
-    fuelTank2-2:
-    fuelTank1-2:
-    fuelTank3-2:
+    RCSTank1-2: # fully insulated 4,7kL tank, -> more expensive than normal 4,7kl tank
+        cost: 5
+    fuelTank4-2: # 4kl cryogenic tank similar to RCSTank1-2
+        cost: 1
+    fuelTank2-2: # 8kl cryogenic tank
+        cost: 1
+    fuelTank1-2: # 16kl cryogenic tank, juno 1 is 24kl non-cryo with decoupler at 350, so being moderately cheaper makes sense
+        cost: 1
+    fuelTank3-2: # 32kl cryogenic tank
+        cost: 1
     
     FASAAgenaLFT_b:
         cost: 50 # compare to proc part costs
@@ -1188,6 +1355,24 @@ basicConstruction:
     Alto_LFO_A:
         cost: 100
 
+    # KW Fairings
+    KW5mExpFairingCone:
+        cost: 4.245
+    KW5mFairingCone:
+        cost: 3.405
+    KW5mDecouplerShroud:
+        cost: 34.575
+    KW5x3AdapterShroud:
+        cost: 39.75
+    KW5mFairingBase:
+        cost: 45
+    KW5mExpandedFairingBase:
+        cost: 54
+    KW5mFairingWall:
+        cost: 0.75
+    KW5mExpFairingWall:
+        cost: 0.75
+
 basicAvionics:
      # *** Avionics
     GuidanceEarly2m:
@@ -1281,6 +1466,10 @@ survivability: # 3-Axis Stability and early probes ##
     Heatshield-5M:
         entryCost: 30000
         cost: 1700
+    
+    #SSTU Procedural Heat Shield
+    SSTU-SC-GEN-MHS:
+        cost: 0
 
     # Heatshield decoupler
     decoupler_ftr_small:
@@ -1489,6 +1678,9 @@ aerodynamicSystems: # X-15 parts, Mach 2 engines
     
     airbrake1: # stock airbrake
         cost: 50
+        
+    Mk1?S39?Cockpit: # F-4 etc
+        cost: 350
 
 # TIER 2.5
 enhancedSurvivability: # Early capsules
@@ -1596,6 +1788,11 @@ advRocketry:
     KW2mengineMaverickV: *H1
     RO-H1-RS27: *H1
 
+    FASAE1: &E1
+        entryCost: 60000 # more expensive than the known cost of the H-1, but again, modifiers.
+        cost: 1300
+    RO-E1: *E1
+
     # TODO: Is there a better place to put this?
     radialDecoupler2:
         cost: 30    # It's a decoupler (20) with a truss (10)
@@ -1627,16 +1824,23 @@ advRocketry:
     rn_proton_vernier:  # 3rd stage vernier
     
     # Molniya/Vostok/Soyuz second stage.
-    RD0110:
+    RD0110: &RD-0110
         cost: 400 # guess based on other engines of the era
     
     #RaiderNick - Soyuz
     rn_r7_vernier_blok_i_s_fg:
         cost: 20 # 6kN
-    
-    FREVIKINGLOWER: #Viking 5C/6
-        cost: 380 #$10M for Ariane 4L stage, 4 engines
-        entryCost: 35000
+
+    FREVIKINGEARLY: #Viking 2/2B
+        cost: 550 #Ariane 1-1 first stage: $14.5M
+        entryCost: 15000 #was too high compared to other engines (gameplay feedback)
+    FREVIKINGUPPER: #Viking 4/4B
+        cost: 1000
+        entryCost: 20000
+        
+     # SSTU
+    SSTU-SC-ENG-RD-0110: *RD-0110
+    SSTU-SC-ENG-H1: *H1
 
         # Staged Combustion TL2
 hydroloxTL2:
@@ -1659,6 +1863,9 @@ hydroloxTL2:
     LR87LH2Vac:  # 80% of the J-2 in the J-2's normal config.
         cost: 2000
         entryCost: 75000
+        
+    # SSTU: 
+    SSTU-SC-ENG-RL10A-3: *RL10 # basic RL10 per config, ignore the name
 
 fuelSystems: # Staged combustion, TL2
     liquidEngine2: #S1.5400(11D33), world's first staged-combustion engine
@@ -1869,13 +2076,15 @@ basicScience:
         cost: 500 # range 0.4M km
 
     # Science wedge (it's an empty compartment)
-    US_R90_Wedge_ScienceBay:
+    US_1M110_Wedge_ScienceBay:
         cost: 10
+    # KIS wedge (empty by default)
+        cost: 12
 
     # Hexacore goes here because this node is about cool satellites,
     # and the hexacore looks cool. It has 50% more nodes than the
     # QuadCore, and so has 50% higher cost.
-    US_Wedge_C15_Hexacore:
+    US_1C15_Wedge_Hexacore:
         cost: 300
 
     # Salyut parts
@@ -1976,7 +2185,10 @@ flightControl:
     FASAGeminiUtilitySasRcs: # FC
         entryCost: 40000
         cost: 800
-    FASAGeminiSasRcs:
+    FASAGeminiSasRcs: # fictional part, about the same efficiency as FASAGeminiPod2RCSWhite, but no 
+                      # tank included, thrusters are 4 times larger as is the part. add price of larger rcs thrusters
+        entryCost: 36000
+        cost: 900
     #FC
     FASA_Gemini_RCS_Thrusters: &GeminiRCS
         entryCost: 3000
@@ -2017,10 +2229,13 @@ simpleCommandModules: # Second gen capsules
     # Extra survival modules, but not recyclers, they have
     # their own 'recycling' node.
 
-    US_Wedge_Carbon:
-    US_Wedge_Food: *basicWedge
-    US_Wedge_Waste: *basicWedge
-    US_Wedge_WasteWater: *basicWedge
+    US_1R310_Wedge_CarbonDioxide: *basicWedge
+    US_1R320_Wedge_Food: *basicWedge
+    US_1R350_Wedge_Waste: *basicWedge
+    US_1R370_Wedge_WasteWater: *basicWedge
+
+    # Universal Storage radial life support storage tanks.
+    US_Radial_R40_Food: *basicWedge
 
     TacLifeSupportMFTContainer:
     TacLifeSupportMFTContainerSmall:
@@ -2154,6 +2369,11 @@ electrics:
         cost: 1000 # FIXME guesses...
     FuelCellArray:
         cost: 2500 # FIXME, 2.5x above with 3x capacity.
+
+    #Universal Storage fuel cell, similar to the stock single fuel cell.
+    US_1P110_Wedge_Fuelcell:
+        cost: 1000
+
     #Tantares Soyuz
     Tantares_Solar_B: *SoyuzSolar
     Tantares_Antenna_B:
@@ -2291,7 +2511,7 @@ shortTermHabitation:
 
 # TIER 4
 heavyRocketry: #TL3 Mid-late 60s tech. F-1, H-1 uprated, etc.
-    SXTAJ10Adv: # as Transtage's AJ10-138, later unlocks to AJ10-118F/K
+    SXTAJ10Adv: &AJ10adv # as Transtage's AJ10-138, later unlocks to AJ10-118F/K
         cost: 300
         
     radialLiquidEngine1-2: # R-36/Tsyklon vernier FIXME cost
@@ -2349,6 +2569,15 @@ heavyRocketry: #TL3 Mid-late 60s tech. F-1, H-1 uprated, etc.
     Apollo_SM_Engine: *ApolloSPS
     LM_AscentEngine: *LMAE
     LM_DescentEngine: *LMDE
+    
+    # SSTU
+    SSTU-SC-ENG-AJ10-137: *ApolloSPS
+    SSTU-SC-ENG-F1: *F-1
+    SSTU-AJ10-CustomAdvanced: *AJ10adv
+    
+    FREVIKINGLOWER: #Viking 5C/6
+        cost: 380 #$10M for Ariane 4L stage, 4 engines
+        entryCost: 35000
 
 hydroloxTL3:
 
@@ -2364,12 +2593,15 @@ hydroloxTL3:
 
     #OLDD Apollo parts. Same as FASA.
     J2engine: *J2Engine
+    
+     # SSTU
+    SSTU-SC-ENG-J-2: *J2Engine
 
 propulsionSystems: #staged combustion TL3 -- NK-15 here.
     # Bobcat's Soviet Engines -Need Costing- WIP costing approximation using data from Yuri Sovetkin (600k-700k SUR for one engine manufacturing with 1USD of 1965 = 0.9 RUR)
-    NK33: # in NK-15 configuration
+    NK33_StockVersion: # in NK-15 configuration
         cost: 670
-    NK43: # in Nk-15V configuration
+    NK43_StockVersion: # in Nk-15V configuration
         cost: 780
     # NK15s were flown on the 4 N1 launches, from 1969 to 1972
     
@@ -2444,7 +2676,7 @@ advConstruction:
     FASASaturnSLA: &ApolloSLA # spacecraft lunar module adapter - base
         cost: 150
         
-    # SXT N!
+    # SXT N1
     SXTK1Decoupler:
         cost: 250
     SXTK1Decoupler2:
@@ -2518,6 +2750,11 @@ advConstruction:
     fuelLine:
         cost: 150
 
+    #Universal Storage OctoCore
+    US_1C20_Wedge_Octocore:
+        cost: 400
+        entryCost: 1750
+
 advFlightControl:
     # Salyut parts
     salyut_asas:
@@ -2558,6 +2795,8 @@ advFlightControl:
     FASALM_RCS: &ApolloLMRCS
         entryCost: 10500
         cost: 300
+    #SSTU Apollo Docking 
+    SSTU-SC-GEN-DP-0P: *ApolloDockingDevice
 
     # Avionics
     GuidanceLate1m: # Later 1m guidance
@@ -2669,6 +2908,11 @@ advFlightControl:
         
     # Generic Apollo-sized docking port
     RO-ApolloDockingPort: *ApolloDockingDevice
+    
+    Vega_Engine_A: #S5.66 Salyut 1 engine
+    Vega_Engine_B: #S5.66
+    Alnair_Engine_B: # RD-0225, Almaz propulsion
+
 
 commandModules: # Third generation capsules, it would seem.
     Mark1-2Pod:
@@ -2737,11 +2981,21 @@ commandModules: # Third generation capsules, it would seem.
     Tantares_Parachute_A: *SoyuzParachute
     Tantares_Habitation_A: *SoyuzOM
     Hamal_Orbital_A: *ProgressBO
-    #TKS VA
-    Alnair_Crew_A:
-    Alnair_Decoupler_A:
-    Alnair_Engine_A: *ApolloLES
     
+    #VSR VA
+    # prices guess based off Soyuz, Gemini, Apollo
+    MK2VApod: &VACapsule
+        entryCost: 600000
+        cost: 8000
+    
+    #TKS VA
+    Alnair_Crew_A: *VACapsule
+    Alnair_Decoupler_A:
+    Alnair_Engine_A: #solid propellant de-orbit engine for TKS
+    Alnair_LES_A: #FIXME: same cost as Apollo LES for now
+        entryCost: 175000
+        cost: 5000
+     
     FASAGeminiPod2White:
         entryCost: 316000
         cost: 6000
@@ -2753,12 +3007,6 @@ commandModules: # Third generation capsules, it would seem.
     Apollo_CM: *ApolloCM
     Apollo_CM_Decoupler: *ApolloDecouplerCM
     
-    #VSR VA
-    # prices guess based off Soyuz, Gemini, Apollo
-    MK2VApod:
-        entryCost: 600000
-        cost: 8000
-        
     # Gemini Big G
     # 1bln USD (1970) for development cost and 75mln USD (1970) for the unit cost 
     # 812mln USD (1965) for development and 59mln USD (1965) for the unit cost 
@@ -2790,10 +3038,23 @@ commandModules: # Third generation capsules, it would seem.
     FASAGeminiBigGDockExt:
         entryCost: 7000 # based on the Apollo docking device
         cost: 2000
-
+        
+        #SSTU - prices are generic costing, mind they do not account for the integrated equipment
+    SSTU-SC-B-BPC: *ApolloLES       # Apollo LES
+    SSTU-SC-B-CM: *ApolloCM        # A CM
+    SSTU-SC-B-SM: *ApolloSM        # A SM
+    
+    SSTU-SC-A-BPC:              # soyuz SAS
+        cost: 2500              # half apollo LES, estimation taken from tantares
+    SSTU-SC-A-OM:   *SoyuzOM
+    SSTU-SC-A-DM:   *SoyuzPod
+    SSTU-SC-A-SM:   *SoyuzPAO
+    
 spaceExploration: #crewed landing
     landerCabinSmall:
         cost: 2000 # FIXME
+    landerCabinMedium:
+        cost: 3000 # FIXME
     FASA_Gemini_Lander_Pod:
         cost: 2000 # 1-person lander cabin, same cost as for the 1-person landerCabinSmall 
     mk2LanderCabin:
@@ -2936,7 +3197,8 @@ advElectrics:
     # technology doubles the cost.
     SCANsat_Scanner2:
         cost: 1000
-
+        
+    
 # TIER 5
 heavierRocketry: #TL4 Apollo Applications program, N1F, etc.
     toroidalAerospike: &J2T # J-2T (plug nozzle J-2)
@@ -2956,6 +3218,9 @@ hydroloxTL4:
         entryCost: 27750
     
     Vodorod_RD57: # RD-57 engine, development ended in mid 1970s, 105 engines built
+    
+    #SSTU
+    SSTU-SC-ENG-M1-RO: *M-1
         
 precisionPropulsion:
     FRERD843: #RD-843, late and tiny rocket engine used on Vega
@@ -2980,6 +3245,8 @@ specializedControl: # Tl4 avioncis
     FASADeltaAv2:
         entryCost: 10000
         cost: 400
+
+    Alnair_Engine_C: #KRD-442 FGB propulsion module engine
 
 heavyAerodynamics: #TL4 jets - Mature Turbofans
     turboJet: #F100
@@ -3058,13 +3325,18 @@ veryHeavyRocketry: #TL5 late 70s/80s tech
     KW1mengineVestaVR1: # AJ10-118K vacuum engine for Delta II
         cost: 615 # 2.5M (1990 USD) http://www.lr.tudelft.nl/en/organisation/departments/space-engineering/space-systems-engineering/expertise-areas/space-propulsion/design-of-elements/cost/
     
+        # SSTU
+    SSTU-SC-ENG-AJ10-190: *AJ10-190OME
+    SSTU-SC-ENG-Merlin-1A: 
+        cost: 205
+        entryCost: 17050 #https://www.quora.com/unanswered/How-much-did-SpaceX-spend-developing-the-Merlin-1A-engine-for-Falcon-1
 
 stagedTL5:
     # Bobcat's Soviet Engines -Need Costing-
     # RD-170/171
     SXTKD170: &RD-170
         cost: 5400 # 2x RD-180 cost. RD-180 is derived from the RD-170/171
-    RD171: *RD-170
+    RD171_StockVersion: *RD-170
     liquidEnginemogulmp1500: *RD-170
     
     NP_srb_radialbooster: # Energia liquid booster (RD-170 + tank)
@@ -3112,7 +3384,7 @@ highPerformanceFuelSystems:
 
 hydroloxTL5:
     #Energia sustainer engine
-    RD0120: &RD-0120
+    RD0120_StockVersion: &RD-0120
         cost: 5000 # FIXME total guess
     SXTCommodore: *RD-0120
     NP_lfe_25m_Orbitalbertha: *RD-0120
@@ -3122,6 +3394,10 @@ hydroloxTL5:
         cost: 20000 # FIXME
         entryCost: 100000 # same as for single RD-0120
     NP_lfe_375m_EnergiaQuad: *4xRD-0120
+    
+    # SSTU: 
+    SSTU-SC-ENG-RL10A-4:
+        cost: 1300 # +1000 for config
     
     # SSME / RS-24/5
     Ks25: &RS-25
@@ -3140,8 +3416,16 @@ hydroloxTL5:
         entryCost: 114000 # same as for single RS-25
     
     
-    KW3mengineWildcarXR: #HM7 engine for Ariane family
+    KW3mengineWildcatXR: #HM7 engine for Ariane family
         cost: 1200 # quite rough, going of 11.6 million for the stage in 1985 dollars
+        
+
+    # SSTU
+    SSTU-SC-ENG-RS-25: *RS-25
+
+    FRELE5: #From FRE
+        cost: 2650 #assuming 30M stage cost in 1992 so about 10M engine cost
+        entryCost: 75000
 
 experimentalAerodynamics: #TL5 jets
     SXTKe90TurboJet: # Progress D-18T
@@ -3165,6 +3449,9 @@ avionicsTL5:
     STSAPASport: *APAS
     Hamal_Battery_A: #Advanced Progress Batteries
     Hamal_Control_B: #Advanced Progress SA
+    
+    Vega_Engine_C: #S5.79
+    
 
 # TIER 7
 experimentalRocketry: #TL6, late 80s/90s
@@ -3173,12 +3460,31 @@ experimentalRocketry: #TL6, late 80s/90s
     Size2LFB: &Pyrios # Pyrios booster, technically TL7 but the engines are F-1s.
         cost: 43000 # FIXME guess based off 2x F-1 + tankage.
     NP_lfb_25m_Adv: *Pyrios
+    
+    # SSTU
+    # F-1B pricing unclear, engine got never built, so copied values from F-1
+    SSTU-SC-ENG-F1B: &F-1B
+        entryCost: 409361
+        cost: 5000
+    # Merlin Engines use D/Dvac pricing
+    SSTU-SC-ENG-Merlin-1B:
+        cost: 195
+        entryCost: 20000 #guessed, a bit more than Merlin 1A
+    SSTU-SC-ENG-Merlin-1BV: 
+        cost: 220
+        entryCost: 22000
+    SSTU-SC-ENG-Merlin-1C:
+        cost: 185
+        entryCost: 26000 #regenerative cooling = more expensive
+    SSTU-SC-ENG-Merlin-1CV: 
+        cost: 210
+        entryCost: 28000
 
 stagedTL6:
     # Bobcat's Soviet Engines -Need Costing-
-    RD180:
+    RD180_StockVersion:
         cost: 2700 
-    RD191: # NPO Energomash RD-191
+    RD191_StockVersion: # NPO Energomash RD-191
         cost: 1350 # half of the RD-180 cost. Both are derived from the RD-170/171.
     XKosmos_Angara_RD-275KX: # RD-275, Proton M first stage
         cost: 515 # same as RD-253
@@ -3219,12 +3525,19 @@ hydroloxTL6:
     cryoengine-375-1: *RS-68
 
     KW2mengineVestaVR9D: # 2X japanese LE-7A
-        cost: 3840 # 50x less than development cost
+        cost: 12420
         entryCost: 192000 # 781M (1991 USD) http://www.lr.tudelft.nl/en/organisation/departments/space-engineering/space-systems-engineering/expertise-areas/space-propulsion/design-of-elements/cost/
 
-    cryoengine-25-1: # LE-7/LE-7A
-        cost: 1920  # Half the cost of dual model above
+    cryoengine-25-1: &LE7 # LE-7/LE-7A
+        cost: 6210  # Half the cost of dual model above
         entryCost: 192000 
+
+    # SSTU
+    SSTU-SC-ENG-RS-68: *RS-68
+    SSTU-SC-ENG-RL10A-5: 
+        cost: 1300 # + 1200 for config
+        
+    FRELE7: *LE7
 
 avionicsTL6:
     RLA_tiny_vac: # Marquardt/Aerojet R4D-11.
@@ -3250,9 +3563,11 @@ giganticRocketry: #TL7, present day
     # StarShine Industries Merlin
     merlin1D: &Merlin1D
         cost: 175 # 1,3M (2014 USD) http://space.stackexchange.com/questions/4388/what-are-the-costs-of-the-various-different-engines-in-current-use
+        entryCost: 32000
     LazTekFalcon9EngineCenter: *Merlin1D
     merlin1D_vac: &Merlin1DVac
         cost: 200 # little bigger than Merlin 1D 
+        entryCost: 34000
     LazTekMerlin1dVacuumEngine: *Merlin1DVac
     
     liquidEngineMiniTurbo: #Blue Origin BE-4
@@ -3263,7 +3578,20 @@ giganticRocketry: #TL7, present day
 
     CHAKAOME: # AJ10-190 for Orion
         cost: 400 # same as for AJ10-190 OME
+        
+    # SSTU
+    SSTU-SC-ENG-Merlin-1D: *Merlin1D
+    SSTU-SC-ENG-Merlin-1DV: *Merlin1DVac
+    # Merlin/a/b/c also preliminarily use the d's pricing
 
+    #FRE
+    FRERUTHERFORD: 
+        cost: 21
+        entryCost: 15000
+    FRERUTHERFORDVAC:
+        cost: 28
+        entryCost: 20000
+    
 hydroloxTL7:
     liquidEngineconstelacion: &J2X # J-2X
         cost: 3310 # 25M USD Erik Seedhouse - Lunar Outpost: The Challenges of Establishing a Human Settlement on the Moon http://i.imgur.com/lnqO6om.jpg
@@ -3276,7 +3604,7 @@ hydroloxTL7:
         cost: 3800 # 1800 for base RL10 + 2000 of B-2 config
     
     # Bobcat's Soviet Engines -Need Costing-
-    RD0146: # KB Khimavtomatiki RD-0146
+    RD0146_StockVersion: # KB Khimavtomatiki RD-0146
         cost: 2000 # same as for RL10
     
     B9_Engine_L2_Atlas: # CECE-Base
@@ -3289,10 +3617,17 @@ hydroloxTL7:
     
     XKosmos_TKS_RD-0225_EngineLANDERS: # Kestrel 1B Retro
         cost: 40
+        
+     # SSTU
+    SSTU-SC-ENG-J-2X: *J2X
+    SSTU-SC-ENG-RL10B-2:
+        cost: 1300 # +2000 for config
+    SSTU-SC-ENG-Vinci:
+        cost: 4800 # arbitrary estimation; cheaper than 2xRL10-B2 (2x3300), according to nasa SLS upper stage study
 
 stagedTL7:
     # AJ26-62 config here
-    RD0124:
+    RD0124_StockVersion:
         cost: 1200 # total guess
 
 exoticFuelStorage: #TL7 solids
@@ -3327,9 +3662,10 @@ exoticFuelStorage: #TL7 solids
         cost: 2500 # based on the costs above
 
 avionicsTL7:
+avionicsTL7:
     ParaDockingPort: # Let's assume it's NDS
         cost: 3500 # somewhat higher than for Apollo docking port
-    dockingPort2: # NASA Docking System
+    dockingPort2: &NASADockingDevice
         cost: 3500
     dockingPortLateral: # same, lateral shielded.
         cost: 4000
@@ -3342,6 +3678,7 @@ avionicsTL7:
     FASADeltaAv4:
         cost: 1200
         entryCost: 30000
+    SSTU-SC-GEN-DP-1P: *NASADockingDevice
 
 #FIXME HERE BE DRAGONS (below this point)
 advExploration:
@@ -3364,6 +3701,11 @@ advExploration:
         cost: 300
     B9_Utility_Leg_H50P:
         cost: 300
+
+    #Universal Storage MMU:
+    US_3R310_EVA_EVAX:
+        cost: 4500
+        entryCost: 22460
 
 precisionEngineering:
     #US Probes Integration
@@ -3935,7 +4277,7 @@ specializedCommandModules: # modern?
         cost: 60000
         entryCost: 750000
     XOrionPodXbb31: *ORIONPOD
-    XLFTORIONLARGE: # service module
+    XLFTORIONLARGE: &ORIONSM # service module
         cost: 60000
         entryCost: 750000
     xOrionLES:
@@ -3964,6 +4306,11 @@ specializedCommandModules: # modern?
         entryCost: 17500 #2x less than Apollo chutes,  about 5% of total development cost (359260)
     DragonLadder:
         cost: 10
+        
+    # SSTU  - generic pricing, does not account for integrated equipment
+    SSTU-SC-C-BPC: *ApolloLES         # Orion LES, cost stolen from apollo :^)
+    SSTU-SC-C-CM: *ORIONPOD
+    SSTU-SC-C-SM: *ORIONSM
 
 largeUnmanned:
     
@@ -4184,10 +4531,19 @@ offworldManufacturing:
 recycling:
 
     # Water Recycling System
-    US_Wedge_WRS:
+    US_1P140_Wedge_WRS:
+        cost: 250
+        entryCost: 20000
 
     # CO2 removal
-    US_Wedge_Sabatier:
+    US_1P130_Wedge_Sabatier:
+        cost: 500
+        entryCost: 22000
+
+    # Water splitter
+    US_1P120_Wedge_Elektron:
+        cost: 250
+        entryCost: 20000
 
     TacSabatierRecycler:
         cost: 1000 # total guess
